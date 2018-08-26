@@ -1,4 +1,4 @@
-package tech.rtsproduction.fourrockstar;
+package tech.rtsproduction.chitchat;
 
 import org.junit.Test;
 

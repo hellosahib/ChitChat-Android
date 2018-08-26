@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:titleTextColor="@android:color/white"
+        app:title="Create Account"
+        android:id="@+id/toolbarRegister"
+        android:layout_marginBottom="16dp"
+        android:elevation="32dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create A New Account"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_below="@id/toolbarRegister"
+        android:id="@+id/headerText"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Display Name"
+        android:layout_below="@id/headerText"
+        android:padding="16dp"
+        android:inputType="textPersonName"
+        android:id="@+id/displayNameEdit"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email Address"
+        android:layout_below="@id/displayNameEdit"
+        android:padding="16dp"
+        android:inputType="textEmailAddress"
+        android:id="@+id/emailEdit"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@id/emailEdit"
+        android:padding="16dp"
+        android:inputType="textPassword"
+        android:id="@+id/passwordEdit"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:background="@color/colorAccent"
+        android:layout_below="@id/passwordEdit"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:elevation="16dp"
+        android:id="@+id/createBtnRegister"/>
+
+</RelativeLayout>
