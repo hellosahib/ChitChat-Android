@@ -29,17 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.logOutMenu:{
+        switch (item.getItemId()) {
+            case R.id.logOutMenu: {
                 mAuth.signOut();
-                startActivity(new Intent(MainActivity.this,StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                startActivity(new Intent(MainActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
+                return true;
+            }
+            case R.id.settingMenu: {
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 return true;
             }
         }
@@ -50,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser==null){
-            startActivity(new Intent(MainActivity.this,StartActivity.class));
+        if (currentUser == null) {
+            startActivity(new Intent(MainActivity.this, StartActivity.class));
             finish();
         }
     }

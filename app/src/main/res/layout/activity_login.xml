@@ -62,4 +62,11 @@
         android:padding="16dp"
         android:elevation="32dp"
         android:id="@+id/loginBtnLogin"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBarLogin"
+        android:visibility="invisible"/>
 </RelativeLayout>
