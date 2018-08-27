@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String name, String email, String password) {
+        final String userName = name;
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -62,6 +64,15 @@ public class RegisterActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            UserProfileChangeRequest nameChange = new UserProfileChangeRequest.Builder().setDisplayName(userName).build();
+                            user.updateProfile(nameChange).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Log.e("USER PROFILE UPDATE","Name Changed");
+                                    }
+                                }
+                            });
                             startActivity(new Intent(RegisterActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             finish();
                         } else {

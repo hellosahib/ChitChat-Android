@@ -25,6 +25,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="LOGIN HERE"
+        android:background="@android:color/holo_green_dark"
+        android:padding="16dp"
+        android:layout_below="@id/appNameText"
+        android:layout_margin="16dp"
+        android:id="@+id/loginBtnStart"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Need an Acoount"
         android:background="@color/colorAccent"
         android:textColor="@color/colorPrimaryDark"
