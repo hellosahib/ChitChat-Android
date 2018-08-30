@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         toolbarLogin = findViewById(R.id.toolbarLogin);
         loginBtn = findViewById(R.id.loginBtnLogin);
         progressBar = findViewById(R.id.progressBarLogin);
+        progressBar.setVisibility(View.INVISIBLE);
 
         setSupportActionBar(toolbarLogin);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

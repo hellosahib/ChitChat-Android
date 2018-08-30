@@ -26,7 +26,11 @@
             android:name=".LoginActivity"
             android:parentActivityName=".StartActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".StatusActivity"></activity>
+        <activity android:name=".StatusActivity" />
+        <activity
+            android:name=".ChatActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".AddFriendActivity"></activity>
     </application>
 
 </manifest>

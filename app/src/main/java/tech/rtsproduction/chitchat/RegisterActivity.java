@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //FIND VIEWS HERE
         toolbarRegister = findViewById(R.id.toolbarRegister);
         createBtnRegister = findViewById(R.id.createBtnRegister);
         nameEdit = findViewById(R.id.displayNameEdit);
@@ -49,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEdit = findViewById(R.id.passwordEdit);
         progressBar = findViewById(R.id.progressBarRegister);
 
+        //VARIABLES INITLIZATION HERE
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Users");
@@ -56,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbarRegister);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //CREATE BUTTON SET ON CLICK LISTENER
         createBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,10 +75,11 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });//CREATEBTN ONCLICKLISTENER
-
-
     }
 
+    //USER DEFINED FUNCTIONS
+
+    //REGISTERING USER HERE VIA FIREBASE AUTH
     private void registerUser(final String name, String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -112,5 +116,5 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });//CreateUserWithEmailAndPassword
-    }
+    }//REGISTERUSER
 }

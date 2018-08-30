@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,7 @@ public class SettingActivity extends AppCompatActivity {
     TextView userName, userStatus;
     FirebaseDatabase database;
     DatabaseReference myref;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +39,11 @@ public class SettingActivity extends AppCompatActivity {
         userStatus = findViewById(R.id.userStatusTextSetting);
 
         database = FirebaseDatabase.getInstance();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        myref = database.getReference("Users").child(mAuth.getCurrentUser().getUid());
+        mAuth = FirebaseAuth.getInstance();
 
+        boolean chatIntent = getIntent().getBooleanExtra("ChatIntent",false);
+        editableUI(!chatIntent);
+        /*
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -53,19 +57,32 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
+        */
 
-        changeStatusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SettingActivity.this, StatusActivity.class));
-            }
-        });
+
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private void editableUI(boolean editable){
+        if(editable){
+            myref = database.getReference("Users").child(mAuth.getCurrentUser().getUid());
+            changeStatusBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(SettingActivity.this, StatusActivity.class));
+                }
+            });
+        }else{
+            changeImageBtn.setVisibility(View.INVISIBLE);
+            changeStatusBtn.setVisibility(View.INVISIBLE);
+            Toast.makeText(this, "Chat Intent Recieved", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

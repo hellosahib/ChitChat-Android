@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -25,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
 
+        ArrayList<String> chatData = new ArrayList<>();
+        chatData.add("Chat 1");
+        chatData.add("Chat 2");
+        chatData.add("Chat 3");
+        chatData.add("Chat 4");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,chatData);
+        chatListView.setAdapter(adapter);
+
+        chatListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(MainActivity.this,ChatActivity.class));
+            }
+        });
     }
 
     @Override
@@ -44,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
             }
             case R.id.settingMenu: {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                return true;
+            }
+            case R.id.addFriendMenu:{
+                startActivity(new Intent(MainActivity.this,AddFriendActivity.class));
                 return true;
             }
         }
